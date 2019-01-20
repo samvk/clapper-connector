@@ -6,10 +6,9 @@ const app = dialogflow({ debug: true });
 
 const clapperSuggestions = new Suggestions(['Turn on the lights', 'Power off my TV', '👏']);
 
-// CHANGEME need to have all deeplinks trigger fallback intent
 app.intent('Default Welcome Intent', async (conv) => {
     conv.ask(
-        `<speak><voice gender='male'><prosody rate='90%' pitch='-2st'>Pairing...</prosody></voice><break time='400ms' /></speak>`,
+        `<speak><voice gender='male'><prosody rate='90%' pitch='-2st'>Pairing...</prosody></voice><break time='450ms' /></speak>`,
         `<speak><voice gender='female'>Connected!  \n${randomPop(['What would you like me to do?', 'What can I do for you?'])}</voice></speak>`,
         clapperSuggestions,
     );
@@ -22,7 +21,8 @@ app.intent('help', (conv) => {
     );
 });
 
-app.intent(['Default Fallback Intent', 'clapper_connector'], (conv) => {
+// 'Unrecognized Deep Link Fallback' *should* be an actual deeplink fallback but I cannot get it working despite following the docs (https://developers.google.com/actions/dialogflow/define-actions#handling_unrecognized_actions_when_users_invoke_your_action)
+app.intent(['Default Fallback Intent', 'Unrecognized Deep Link Fallback', 'clapper_connector'], (conv) => {
     const okayPhrase = sayOkay();
     conv.close(
         new SimpleResponse({

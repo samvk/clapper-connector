@@ -4,4 +4,4 @@ module.exports.randomPop = randomPop;
 module.exports.hostingPath = (path) => `https://the-clapper-cd63b.firebaseapp.com/${path}`;
 
 // common phrases
-module.exports.sayOkay = () => randomPop(['Ok', 'Sure', 'Alright']);
+module.exports.sayOkay = () => randomPop(['Okay', 'Sure', 'Alright']);

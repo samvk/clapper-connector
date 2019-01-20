@@ -8,9 +8,11 @@ const clapperSuggestions = new Suggestions(['Turn on the lights', 'Power off my 
 
 // CHANGEME need to have all deeplinks trigger fallback intent
 app.intent('Default Welcome Intent', async (conv) => {
-    conv.ask(`<speak><voice gender='male'><prosody rate='90%' pitch='-2st'>Pairing...</prosody></voice><break time='400ms' /></speak>`);
-    conv.ask(`<speak><voice gender='female'>Connected!  \n${randomPop(['What would you like me to do?', 'What can I do for you?'])}</voice></speak>`);
-    conv.ask(clapperSuggestions);
+    conv.ask(
+        `<speak><voice gender='male'><prosody rate='90%' pitch='-2st'>Pairing...</prosody></voice><break time='400ms' /></speak>`,
+        `<speak><voice gender='female'>Connected!  \n${randomPop(['What would you like me to do?', 'What can I do for you?'])}</voice></speak>`,
+        clapperSuggestions,
+    );
 });
 
 app.intent('help', (conv) => {

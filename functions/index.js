@@ -6,8 +6,9 @@ const app = dialogflow({ debug: true });
 
 const clapperSuggestions = new Suggestions(['Turn on the lights', 'Power off my TV', '👏']);
 
+// CHANGEME need to have all deeplinks trigger fallback intent
 app.intent('Default Welcome Intent', async (conv) => {
-    conv.ask(`<speak><voice gender='male'><prosody rate='90%' pitch='-2st'>Pairing...</prosody></voice><break time='300ms' /></speak>`);
+    conv.ask(`<speak><voice gender='male'><prosody rate='90%' pitch='-2st'>Pairing...</prosody></voice><break time='400ms' /></speak>`);
     conv.ask(`<speak><voice gender='female'>Connected!  \n${randomPop(['What would you like me to do?', 'What can I do for you?'])}</voice></speak>`);
     conv.ask(clapperSuggestions);
 });
@@ -24,11 +25,9 @@ app.intent(['Default Fallback Intent', 'clapper_connector'], (conv) => {
     conv.close(
         new SimpleResponse({
             text: okayPhrase,
-            // CHANGEME needs to be a soundbite
-            speech: `<speak>${okayPhrase}!<break time='450ms' /><audio src='${hostingPath('audio/clap-1.mp3')}' /></speak>`,
+            speech: `<speak>${okayPhrase}!<break time='450ms' /><audio src='${hostingPath('audio/clap-1.mp3')}' /><break time='300ms' /></speak>`,
         }),
         new BasicCard({
-            // CHANGEME need to fix sizing of this image
             image: new Image({ url: hostingPath('img/clap.png'), alt: '*clap* *clap*' }),
         }),
     );

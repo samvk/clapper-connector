@@ -21,6 +21,10 @@ app.intent('help', (conv) => {
     );
 });
 
+app.intent('actions_intent_NO_INPUT', (conv) => {
+    conv.close(`Sorry, I couldn't hear what you just said.`);
+});
+
 // 'Unrecognized Deep Link Fallback' *should* be an actual deeplink fallback but I cannot get it working despite following the docs (https://developers.google.com/actions/dialogflow/define-actions#handling_unrecognized_actions_when_users_invoke_your_action)
 app.intent(['Default Fallback Intent', 'Unrecognized Deep Link Fallback', 'clapper_connector'], (conv) => {
     const okayPhrase = sayOkay();

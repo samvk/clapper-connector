@@ -38,4 +38,18 @@ app.intent(['Default Fallback Intent', 'Unrecognized Deep Link', 'clapper_connec
     );
 });
 
+app.intent('self_destruct', (conv) => {
+    const okayPhrase = sayOkay();
+    conv.close(
+        okayPhrase,
+        new SimpleResponse({
+            text: '5...4...3...2...1...',
+            speech: `<speak><voice gender='male'><prosody rate='90%' pitch='-2st'><break time='1000ms' />5<break time='1000ms' />4<break time='1000ms' />3<break time='1000ms' />2<break time='1000ms' />1<break time='1000ms' /><audio src='${hostingPath('audio/clap-1.mp3')}' /><break time='1000ms' /></prosody></voice></speak>`,
+        }),
+        new BasicCard({
+            image: new Image({ url: hostingPath('img/clap.png'), alt: '*clap* *clap*' }),
+        }),
+    );
+});
+
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest(app);

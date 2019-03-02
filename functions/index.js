@@ -6,7 +6,7 @@ const app = dialogflow({ debug: true });
 
 const clapperSuggestions = new Suggestions(['Turn on the lights', 'Power off my TV', '👏']);
 
-app.intent('Default Welcome Intent', async (conv) => {
+app.intent('Default Welcome Intent', (conv) => {
     conv.ask(
         `<speak><voice gender='male'><prosody rate='90%' pitch='-2st'>Pairing...</prosody></voice><break time='450ms' /></speak>`,
         `<speak><voice gender='female'>Connected!  \n${randomPop(['What would you like me to do?', 'What can I do for you?'])}</voice></speak>`,

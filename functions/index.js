@@ -1,6 +1,13 @@
 const { dialogflow, SimpleResponse, BasicCard, Image, Suggestions } = require('actions-on-google');
 const functions = require('firebase-functions');
+const i18n = require('i18n');
 const { randomPop, sayOkay, hostingPath } = require('./util');
+
+i18n.configure({
+    locales: ['en-US', 'en-GB', 'it-IT'],
+    directory: `${__dirname}/locales`,
+    defaultLocale: 'en-US',
+});
 
 const app = dialogflow({ debug: true });
 
